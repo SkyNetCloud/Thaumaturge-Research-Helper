@@ -9,7 +9,7 @@ $(function () {
 		document.body.classList.toggle("dark-mode", this.checked);
 		localStorage.setItem("darkMode", this.checked);
 	});
-	var latest_version = "Thaumaturge 26.1.2";
+	var latest_version = "1.0.0";
 	$.each(version_dictionary, function (key, version) {
 		$("#version").append('<option value="' + key + '">' + key + '</option>');
 	});
