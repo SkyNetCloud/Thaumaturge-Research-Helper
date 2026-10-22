@@ -1,0 +1,252 @@
+.aspectlist {
+	list-style: none;
+	padding: 0;
+	overflow: scroll;
+	height: 405px;
+	display: block;
+	width: 700px;
+}
+
+.aspectlist>li {
+	display: block;
+	width: 145px;
+	float: left;
+	font-size: 100%;
+	font-family: serif;
+}
+
+#avail>li>* {
+	padding: 5px;
+	display: block;
+	overflow: hidden;
+	text-decoration: none;
+	color: #333;
+	cursor: pointer;
+}
+
+.aspectlist>li.aspect:hover {
+	background: #DDD;
+	color: #000;
+	font-weight: bold;
+}
+
+#avail>li {
+	width: 20%;
+}
+
+.aspect img {
+	vertical-align: middle;
+	float: left;
+	margin: 8px 5px 0 0;
+	max-width: 64px;
+}
+
+.aspect .desc {
+	overflow: hidden;
+	font-weight: normal;
+	line-height: 1.4em;
+	font-size: small;
+}
+
+.aspect>div {
+	text-align: left;
+}
+
+#avail>li.unavail {
+	background: #BBB;
+	color: #999;
+}
+
+#avail>li.unavail img {
+	filter: grayscale(100%);
+}
+
+#avail>li.unavail:hover {
+	background: #999;
+}
+
+#close_results {
+	float: right;
+}
+
+.result>li {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.result>.aspect_result {
+	border: 1px solid #e8e8e8;
+	padding: 5px;
+}
+
+.result>li img {
+	margin: 4px 5px 0 0;
+}
+
+#combination_box {
+	z-index: 500;
+	background: #d6d6d6;
+	position: absolute;
+	display: table-cell;
+	padding: 5px;
+	display: none;
+}
+
+#combination_box img {
+	float: left;
+	margin: 4px 5px 0 0;
+}
+
+#left,
+#right,
+#equals {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.operator {
+	font-size: 1.2em;
+	line-height: 30px;
+	margin: 0 6px;
+}
+
+.name,
+#combination_box .desc {
+	margin-left: 37px;
+}
+
+#combination_box .desc {
+	font-size: small;
+}
+
+#aspects_used {
+	border-top: 2px solid #c2c2c2;
+	padding: 5px;
+}
+
+#aspects_used_list {
+	padding-left: 0;
+}
+
+#aspects_used_list>li {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	text-align: center;
+	line-height: 32px;
+	cursor: default;
+}
+
+body.dark-mode {
+	color-scheme: dark;
+	background: #181818;
+	color: #eee;
+}
+
+body.dark-mode #avail>li>* {
+	color: #ddd;
+}
+
+body.dark-mode #avail>li.aspect:hover {
+	background: #383838;
+	color: #fff;
+}
+
+body.dark-mode #avail>li.aspect:hover>* {
+	color: #fff;
+}
+
+body.dark-mode #avail>li.unavail,
+body.dark-mode #avail>li.unavail>* {
+	background: #292929;
+	color: #777;
+}
+
+body.dark-mode #avail>li.unavail:hover {
+	background: #383838;
+}
+
+body.dark-mode .aspectlist {
+	scrollbar-color: #666 #222;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode button,
+body.dark-mode .ui-button {
+	background: #333;
+	background-image: none;
+	color: #eee;
+	border-color: #666;
+}
+
+body.dark-mode .ui-button:hover,
+body.dark-mode button:hover,
+body.dark-mode input[type="button"]:hover {
+	background: #484848;
+	color: #fff;
+}
+
+body.dark-mode .select2-container .select2-choice {
+	background: #333;
+	background-image: none;
+	color: #eee;
+	border-color: #666;
+}
+
+body.dark-mode .select2-container .select2-choice .select2-arrow {
+	background: #292929;
+	background-image: none;
+	border-color: #666;
+}
+
+body.dark-mode .select2-drop,
+body.dark-mode .select2-drop .select2-search input,
+body.dark-mode .select2-results,
+body.dark-mode .select2-results .select2-result-label {
+	background: #252525;
+	color: #eee;
+	border-color: #555;
+}
+
+body.dark-mode .select2-results .select2-highlighted {
+	background: #383838;
+	color: #fff;
+}
+
+body.dark-mode .select2-results .select2-highlighted .aspect,
+body.dark-mode .select2-results .select2-highlighted .aspect>* {
+	background: transparent;
+	color: #fff;
+}
+
+body.dark-mode .ui-widget-content,
+body.dark-mode .ui-widget-header,
+body.dark-mode .ui-dialog,
+body.dark-mode .ui-dialog-titlebar {
+	background: #252525;
+	background-image: none;
+	color: #eee;
+	border-color: #555;
+}
+
+body.dark-mode .result>.aspect_result {
+	border-color: #555;
+}
+
+body.dark-mode #aspects_used {
+	border-color: #555;
+}
+
+body.dark-mode #combination_box {
+	background: #333;
+	color: #eee;
+}
+
+body.dark-mode a:not(.select2-choice) {
+	color: #9db4ff !important;
+}
+
+body.dark-mode p[style*="color:#666"] {
+	color: #aaa !important;
+}

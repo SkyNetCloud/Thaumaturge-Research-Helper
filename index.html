@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Thaumaturge Research Helper</title>
+	<script type="text/javascript" src="buckets-minified.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="select2.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="select2.css">
+	<script type="text/javascript" src="translation_dictionary.js"></script>
+	<script type="text/javascript" src="version_dictionary.js"></script>
+	<script type="text/javascript" src="tcresearch.js"></script>
+	<link rel="stylesheet" href="tcresearch.css">
+	<style type="text/css">
+		.select2-container .select2-choice {
+			height: 44px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="darkmode">
+		<label>
+			<input type="checkbox" id="check">
+			Dark mode
+		</label>
+	</div>
+	<h2>Thaumaturge Research Helper</h2>
+	<div id="combination_box">
+		<div id="left"></div><span class="operator">+</span>
+		<div id="right"></div><span class="operator">=</span>
+		<div id="equals"></div>
+	</div>
+	<table>
+		<tr>
+			<td>Version:</td>
+			<td>
+				<select id="version">
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>From:</td>
+			<td><input type=hidden id="fromSel"></input></td>
+		</tr>
+		<tr>
+			<td>To:</td>
+			<td><input type=hidden id="toSel"></input></td>
+		</tr>
+		<tr>
+			<td>Min. Steps:</td>
+			<td><input id="spinner" name="value" value="1" style="width:140px" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input id="find_connection" type="button" value="Find Connection" /><input id="close_results"
+					type="button" value="Close all results" /></td>
+		</tr>
+		<tr>
+			<td>Available<br />Aspects:</td>
+			<td><input type="button" id="sel_all" value="Select All Aspects"><input type="button" id="desel_all"
+					value="Deselect All Aspects">
+				<ul id="avail" class="aspectlist"></ul>
+			</td>
+		</tr>
+	</table>
+
+
+
+	<h3 style="margin-top:10px">Help</h3>
+	<p>Use this helper with Thaumaturge research notes. Choose the note's starting and ending aspects in
+		<strong>From</strong> and <strong>To</strong>, then set <strong>Min. Steps</strong> to the number of empty
+		spaces between them. Click <strong>Find Connection</strong> to see a shortest valid sequence using Thaumaturge's
+		aspect combinations.</p>
+	<p>Use <strong>Available Aspects</strong> to mark the aspects you have discovered through Thaumaturge's research and
+		reading system. Disabled aspects are avoided when possible; if no path exists without them, the helper uses the
+		path with the fewest unavailable aspects. The aspect names, recipes, and icons are based on Thaumaturge 26.1.2
+		for NeoForge.</p>
+	<p style="size:small;color:#666;margin-top:10px;">This work is licensed under a <a
+			href="https://creativecommons.org/licenses/by/4.0/" style="color:#55a;">Creative Commons Attribution 4.0
+			License</a>. The original helper source is available in the <a
+			href="https://github.com/ythri/tcresearch/tree/gh-pages" style="color:#55a;">Thaumcraft Research Helper
+			repository</a>.</p>
+</body>
+
+</html>
