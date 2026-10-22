@@ -250,6 +250,18 @@ $(function () {
 		return aspectColorsPromise;
 	}
 
+	function setTintedAspectImage(image, aspect) {
+		if (!image) return;
+
+		getTintedAspectIcon(aspect).then(function (tintedIcon) {
+			if (document.documentElement.contains(image)) {
+				image.src = tintedIcon;
+			}
+		}).catch(function (error) {
+			console.error("Could not tint result icon " + aspect + ":", error);
+		});
+	}
+
 
 	function reset_aspects() {
 		aspects = $.extend([], version_dictionary[version]["base_aspects"]);
@@ -328,13 +340,15 @@ $(function () {
 				step_count++;
 			}
 			$('#' + id).append('<li class="aspect_result aspect" id="' + e + '"><img src="aspects/color/' + e + '.png" /><div>' + formatAspectName(translate[e]) + '</div><div class="desc">' + e + '</div></li><li>↓</li>');
+			setTintedAspectImage($('#' + id + ' .aspect_result').last().find("img")[0], e);
 		});
 		$('#' + id).children().last().remove();
 		$('#' + id).append('<li id="aspects_used">Aspects Used</li>');
 		var used = '<ul id="aspects_used_list">';
 		$.each(aspect_count, function (aspect, value) {
 			if (value > 0) {
-				used = $(used).append('<li title="' + translate[aspect] + ': ' + value + '" style="background-image:url(\'aspects/color/' + aspect + '.png\')">' + value + '</li>');
+				used = $(used).append('<li title="' + translate[aspect] + ': ' + value + '"><img src="aspects/color/' + aspect + '.png" alt="" /><span>' + value + '</span></li>');
+				setTintedAspectImage($(used).find("li").last().find("img")[0], aspect);
 			}
 		});
 		used = $(used).append("<div>Total Steps: " + step_count + "</div>");

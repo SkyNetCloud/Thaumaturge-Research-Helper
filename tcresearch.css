@@ -135,6 +135,25 @@
 	text-align: center;
 	line-height: 32px;
 	cursor: default;
+	position: relative;
+}
+
+#aspects_used_list>li img {
+	position: absolute;
+	inset: 0;
+	width: 32px;
+	height: 32px;
+}
+
+#aspects_used_list>li span {
+	position: relative;
+	z-index: 1;
+	display: block;
+	text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+}
+
+body.dark-mode #aspects_used_list>li span {
+	text-shadow: 0 0 3px #181818, 0 0 3px #181818;
 }
 
 body.dark-mode {
