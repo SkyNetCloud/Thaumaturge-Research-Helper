@@ -1,5 +1,5 @@
 var version_dictionary = {
-	"Thaumaturge 26.1.2": {
+	"1.0.0": {
 		"base_aspects": [
 			"aer",
 			"aqua",
