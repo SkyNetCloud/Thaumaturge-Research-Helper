@@ -1,104 +1,137 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
-	<meta name="description" content="An interactive grid connection helper and aspect pathfinder tailored for the modern Minecraft Thaumaturge mod version 26.1.2.">
-	<meta name="keywords" content="Thaumaturge research helper, Thaumaturge 26.1.2 solver, Thaumaturge mod solver, Minecraft aspect pathfinder, Thaumcraft grid connector">
+	<meta name="description" content="Find aspect connections for Thaumaturge research notes.">
+	<meta name="keywords" content="Thaumaturge research helper, aspect pathfinder, Minecraft">
 	<meta name="robots" content="index, follow">
 	<meta name="author" content="SkyNetCloud">
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f5f3ed">
 	<title>Thaumaturge Research Helper</title>
-	<script type="text/javascript" src="buckets-minified.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="select2.min.js"></script>
+	<script src="buckets-minified.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script src="select2.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="select2.css">
-	<script type="text/javascript" src="translation_dictionary.js"></script>
-	<script type="text/javascript" src="version_dictionary.js"></script>
-	<script type="text/javascript" src="tcresearch.js"></script>
+	<script src="translation_dictionary.js"></script>
+	<script src="version_dictionary.js"></script>
+	<script src="tcresearch.js"></script>
 	<link rel="stylesheet" href="tcresearch.css">
-	<style type="text/css">
-		.select2-container .select2-choice {
-			height: 44px;
-		}
-	</style>
 </head>
 
 <body>
-	<div id="darkmode">
-		<label>
-			<input type="checkbox" id="check">
-			Dark mode
-		</label>
+	<div class="page-shell">
+		<header class="topbar">
+			<a class="brand" href="./" aria-label="Thaumaturge Research Helper home">
+				<span class="brand-mark" aria-hidden="true">T</span>
+				<span>Thaumaturge <span class="brand-light">Research Helper</span></span>
+			</a>
+			<label class="theme-switch" for="check">
+				<input type="checkbox" id="check">
+				<span class="switch-track" aria-hidden="true"></span>
+				<span>Dark theme</span>
+			</label>
+		</header>
+
+		<main>
+			<section class="intro">
+				<div class="intro-copy">
+					<p class="eyebrow">RESEARCH COMPANION <span class="eyebrow-dot"></span> THAUMATURGE 26.1.2</p>
+					<h1>Find your next<br><span>aspect connection.</span></h1>
+					<p class="intro-text">Map a clear path between the aspects in your research notes. Choose your endpoints, set the minimum gap, and let the helper do the connecting.</p>
+				</div>
+				<div class="intro-orbit" aria-hidden="true">
+					<img src="aspects/color/praecantatio.png" alt="">
+					<span class="orbit orbit-one"></span>
+					<span class="orbit orbit-two"></span>
+				</div>
+			</section>
+
+			<div class="workspace">
+				<section class="card solver-card" aria-labelledby="solver-heading">
+					<div class="section-heading">
+						<div>
+							<p class="eyebrow">PATHFINDER</p>
+							<h2 id="solver-heading">Build a connection</h2>
+						</div>
+						<label class="version-select">
+							<span>VERSION</span>
+							<select id="version" aria-label="Aspect version"></select>
+						</label>
+					</div>
+
+					<div id="combination_box" role="tooltip">
+						<div id="left"></div><span class="operator">+</span>
+						<div id="right"></div><span class="operator">=</span>
+						<div id="equals"></div>
+					</div>
+
+					<div class="endpoint-grid">
+						<label class="field-label" for="fromSel">
+							<span class="field-topline"><span>STARTING ASPECT</span><span class="field-index">01</span></span>
+							<input type="hidden" id="fromSel">
+						</label>
+						<div class="path-connector" aria-hidden="true"><span></span></div>
+						<label class="field-label" for="toSel">
+							<span class="field-topline"><span>DESTINATION</span><span class="field-index">02</span></span>
+							<input type="hidden" id="toSel">
+						</label>
+					</div>
+
+					<div class="steps-row">
+						<div>
+							<label for="spinner" class="steps-label">Minimum steps</label>
+							<p class="field-hint">Empty spaces between your two aspects</p>
+						</div>
+						<input id="spinner" name="value" value="1" aria-label="Minimum empty spaces">
+					</div>
+
+					<div class="action-row">
+						<button id="find_connection" class="primary-button" type="button"><span aria-hidden="true">✦</span> Find a connection</button>
+						<button id="close_results" class="text-button" type="button">Close results</button>
+					</div>
+					<p class="solver-note"><span class="note-icon" aria-hidden="true">i</span> The shortest valid path is shown first. Your unavailable aspects are avoided whenever possible.</p>
+				</section>
+
+				<aside class="card guide-card">
+					<div class="guide-icon" aria-hidden="true">✧</div>
+					<p class="eyebrow">QUICK GUIDE</p>
+					<h2>How to use it</h2>
+					<ol class="guide-steps">
+						<li><span>1</span><p>Select the two aspects shown in your research note.</p></li>
+						<li><span>2</span><p>Set the minimum number of empty spaces between them.</p></li>
+						<li><span>3</span><p>Choose <strong>Find a connection</strong> to see your path.</p></li>
+					</ol>
+					<div class="guide-divider"></div>
+					<p class="guide-footnote">Click any aspect below to mark it discovered or undiscovered. Unavailable aspects are used only when needed.</p>
+				</aside>
+			</div>
+
+			<section class="card aspects-card" aria-labelledby="aspects-heading">
+				<div class="section-heading aspects-heading">
+					<div>
+						<p class="eyebrow">YOUR RESEARCH</p>
+						<h2 id="aspects-heading">Available aspects</h2>
+						<p class="section-description">Toggle the aspects you have discovered so far.</p>
+					</div>
+					<div class="bulk-actions">
+						<button id="sel_all" class="secondary-button" type="button">Select all</button>
+						<button id="desel_all" class="secondary-button" type="button">Clear all</button>
+					</div>
+				</div>
+				<ul id="avail" class="aspectlist" aria-label="Available aspects"></ul>
+				<div class="availability-legend"><span class="legend-dot"></span> Available <span class="legend-dot legend-muted"></span> Not discovered</div>
+			</section>
+		</main>
+
+		<footer class="footer">
+			<p>Aspect names, combinations, and icons are based on Thaumaturge 26.1.2 for NeoForge.</p>
+			<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>. Source: <a href="https://github.com/SkyNetCloud/Thaumaturge-Research-Helper/tree/main">Thaumaturge Research Helper</a>.</p>
+		</footer>
 	</div>
-	<h2>Thaumaturge Research Helper</h2>
-	<div id="combination_box">
-		<div id="left"></div><span class="operator">+</span>
-		<div id="right"></div><span class="operator">=</span>
-		<div id="equals"></div>
-	</div>
-	<table>
-		<tr>
-			<td>Version:</td>
-			<td>
-				<select id="version">
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>From:</td>
-			<td><input type=hidden id="fromSel"></input></td>
-		</tr>
-		<tr>
-			<td>To:</td>
-			<td><input type=hidden id="toSel"></input></td>
-		</tr>
-		<tr>
-			<td>Min. Steps:</td>
-			<td><input id="spinner" name="value" value="1" style="width:140px" /></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><input id="find_connection" type="button" value="Find Connection" /><input id="close_results"
-					type="button" value="Close all results" /></td>
-		</tr>
-		<tr>
-			<td>Available<br />Aspects:</td>
-			<td><input type="button" id="sel_all" value="Select All Aspects"><input type="button" id="desel_all"
-					value="Deselect All Aspects">
-				<ul id="avail" class="aspectlist"></ul>
-			</td>
-		</tr>
-	</table>
-
-
-
-	<h3 style="margin-top:10px">Help</h3>
-	<p>Use this helper with Thaumaturge research notes. Choose the note's starting and ending aspects in
-		<strong>From</strong> and <strong>To</strong>, then set <strong>Min. Steps</strong> to the number of empty
-		spaces between them. Click <strong>Find Connection</strong> to see a shortest valid sequence using Thaumaturge's
-		aspect combinations.
-	</p>
-	<p>Use <strong>Available Aspects</strong> to mark the aspects you have discovered through Thaumaturge's research and
-		reading system. Disabled aspects are avoided when possible; if no path exists without them, the helper uses the
-		path with the fewest unavailable aspects. The aspect names, recipes, and icons are based on Thaumaturge 26.1.2
-		for NeoForge.</p>
-	<p style="font-size:small;color:#666;margin-top:10px;">
-		This work is licensed under a
-		<a href="https://creativecommons.org/licenses/by/4.0/" style="color:#55a;">
-			Creative Commons Attribution 4.0 License
-		</a>.
-		The original helper source is available in the
-		<a href="https://github.com/ythri/tcresearch/tree/gh-pages" style="color:#55a;">
-			Thaumcraft Research Helper repository
-		</a>.
-		This version's source is available in the
-		<a href="https://github.com/SkyNetCloud/Thaumaturge-Research-Helper/tree/main" style="color:#55a;">
-			Thaumaturge Research Helper repository
-		</a>.
-	</p>
 </body>
 
 </html>
